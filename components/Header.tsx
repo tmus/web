@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <header className="text-gray-700 py-16">
+    <header className="text-gray-700 dark:text-white py-16">
       <h1 className="text-2xl font-semibold mb-2">Thomas Smith</h1>
       <h2 className="text-xl mb-2">Software Engineer</h2>
       <nav>

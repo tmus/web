@@ -34,7 +34,9 @@ export default function Home() {
 
           <Item title="Warband Builder" href="https://warbands.netlify.app">
             A webapp for building and tracking{" "}
-            <span className="text-gray-600 font-bold">Burrows and Badgers</span>{" "}
+            <span className="text-gray-600 dark:text-gray-300 font-bold">
+              Burrows and Badgers
+            </span>{" "}
             warbands
           </Item>
         </Section>
