@@ -14,7 +14,7 @@ export function Item({ title, href, children }: ItemProps) {
           href={href}
           className="text-xl hover:text-purple-600 dark:hover:text-purple-200 transition-colors duration-100"
         >
-          {title} {"->"}
+          {title} →
         </a>
       </dt>
       <dd>{children}</dd>

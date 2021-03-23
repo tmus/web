@@ -9,7 +9,7 @@ export function Header() {
             className="hover:text-purple-600 transition-colors duration-100"
             href="https://twitter.com/_tmus"
           >
-            Twitter {"->"}
+            Twitter →
           </a>
         </li>
       </nav>
