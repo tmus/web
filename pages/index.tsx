@@ -1,8 +1,11 @@
+import { jobs, renderDateRange } from "@data/jobs";
+
+import { Divider } from "@components/Divider";
 import Head from "next/head";
-import { Header } from "../components/Header";
-import { Divider } from "../components/Divider";
-import { Section } from "../components/Section";
-import { Item } from "../components/Item";
+import { Header } from "@components/Header";
+import { Item } from "@components/Item";
+import { Section } from "@components/Section";
+import { projects } from "@data/projects";
 
 export default function Home() {
   return (
@@ -17,28 +20,26 @@ export default function Home() {
         <Divider />
 
         <Section title="Current Position">
-          <Item
-            title="Sky Betting and Gaming"
-            href="https://www.skybetcareers.com/"
-          >
-            — Software Engineer, <small>2019–Present</small>
-          </Item>
+          {jobs.map((job) => {
+            return (
+              <Item title={job.company} href={job.url.href}>
+                — {job.position},{" "}
+                <small>{renderDateRange(job.start, job.end)}</small>
+              </Item>
+            );
+          })}
         </Section>
 
         <Divider />
 
         <Section title="Projects">
-          <Item title="Gostalt" href="https://github.com/gostalt">
-            A (unmaintained!) web app framework for Go
-          </Item>
-
-          <Item title="Warband Builder" href="https://warbands.netlify.app">
-            A webapp for building and tracking{" "}
-            <span className="text-gray-600 dark:text-gray-300 font-bold">
-              Burrows and Badgers
-            </span>{" "}
-            warbands
-          </Item>
+          {projects.map((project) => {
+            return (
+              <Item title={project.title} href={project.url.href}>
+                {project.body}
+              </Item>
+            );
+          })}
         </Section>
       </main>
     </div>
