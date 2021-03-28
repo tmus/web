@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 type Project = {
+  id: string;
   title: string;
   url: URL;
   body: ReactNode;
@@ -8,11 +9,13 @@ type Project = {
 
 export const projects: Project[] = [
   {
+    id: "1",
     title: "Gostalt",
     url: new URL("https://github.com/gostalt"),
     body: <>A (unmaintained!) web app framework for Go</>,
   },
   {
+    id: "2",
     title: "Warband Builder",
     url: new URL("https://warbands.netlify.app"),
     body: (

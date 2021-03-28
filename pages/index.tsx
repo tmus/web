@@ -22,7 +22,7 @@ export default function Home() {
         <Section title="Current Position">
           {jobs.map((job) => {
             return (
-              <Item title={job.company} href={job.url.href}>
+              <Item key={job.id} title={job.company} href={job.url.href}>
                 — {job.position},{" "}
                 <small>{renderDateRange(job.start, job.end)}</small>
               </Item>
@@ -35,7 +35,7 @@ export default function Home() {
         <Section title="Projects">
           {projects.map((project) => {
             return (
-              <Item title={project.title} href={project.url.href}>
+              <Item key={project.id} title={project.title} href={project.url.href}>
                 {project.body}
               </Item>
             );

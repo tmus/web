@@ -1,4 +1,5 @@
 type Job = {
+  id: string;
   company: string;
   url: URL;
   position: string;
@@ -8,6 +9,7 @@ type Job = {
 
 export const jobs: Job[] = [
   {
+    id: "1",
     company: "Sky Betting and Gaming",
     url: new URL("https://www.skybetcareers.com/"),
     position: "Software Engineer",
