@@ -1,0 +1,72 @@
+import { BlogPost } from "@components/BlogPost.tsx";
+
+export const meta = {
+  title: "Template Literal Types in TypeScript 4.1",
+  description: `A new feature in TypeScript 4.1 is the ability to create Template Literal Types. This feature allows you to use string interpolation to create types.`,
+};
+
+A new feature in TypeScript 4.1 is the ability to create **Template Literal Types**. This feature allows you to use string interpolation to create types:
+
+```typescript
+type World = "world";
+
+type HelloWorld = `Hello ${World}`;
+
+// type HelloWorld = "Hello world"
+```
+
+Looks interesting, right? This feature gets even more powerful when you combine it with union string literals:
+
+```typescript
+type Vertical = "top" | "middle" | "bottom";
+type Horizontal = "left" | "center" | "right";
+
+type Position = `${Vertical}-${Horizontal}`;
+
+declare function setPosition(pos: Position): void;
+
+setPosition("top-right");
+setPosition("bottom-left");
+```
+
+The union types are expanded to include every possible permutation! So we get access to `top-center`, `bottom-right`, `top-left`, and so on, and all the type safety that this brings. Hopefully you can see the potential here. For example, we can easily expand on this to add more options—I'm English, so we could add "centre" to the `Horizontal` type to enable a bit of localisation.
+
+This example was lifted straight from the TypeScript release notes for Version 4.1, but I wanted to see what else I could come up with. Below is an example of using template literal types to create hex pairs, which we can then use in a makeColor function:
+
+```typescript
+type HexNum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type HexLet = "a" | "b" | "c" | "d" | "e" | "f";
+type HexChar = HexNum | HexLet;
+
+type HexPair = `${HexChar}${HexChar}`;
+
+// Stub
+type Color = {};
+
+declare function makeColor(
+  r: HexPair,
+  g: HexPair,
+  b: HexPair,
+  a?: HexPair
+): Color;
+
+makeColor("aa", "1a", "ff");
+makeColor("ba", "da", "55", "e5");
+makeColor("zz", "vv", "1j"); // error!
+```
+
+Here, we define all the possible hex characters, and then define a `HexPair` by using template literal types to join two `HexChar`s together. We then use this type for each argument to the makeColor function, to enable type safety when passing in a hex pair.
+
+Pretty neat!
+
+_**Note**: There's an upper limit on the size of a union type generated this way. For example, I tried joining my `HexPair` type three times to create a `RGBColor` type, but got a `Expression produces a union type that is too complex to represent.` error._
+
+The code in this post is available in [this TypeScript Playground].
+
+[this typescript playground]: https://www.typescriptlang.org/play?#code/C4TwDgpgBAahBOwCWBjAhgGygXigImAHsw8oAffAWyQBMaMJSK8AjQ4IyvAbgChRIUABKF4SAF6EAdsEw58DAGbAm+FBBkJVeMQHMAFir79w0AAqEAzkmTT5AAwAkAbziJUmAL4BaFyLGSMl72xjQQKBho8NCKAK5SKLZSUJYQwBbWSQAUYFYAXFAZNkjSAJQFAG6EtMap6VbF0lkExN56hnilfHVF2azsnN5KKl28JoJCEAAeAHKxlPIADORQAIwrAEwrAMwrACwrAKwrAGwrAOwrABwrAJx8AtCTUwAyafJ4aNos2ijaNNpGCs8IoeOMntMAML6KLyZ5zBYUZ5vYDGR7CaZmNBIeAOPxQmHwTz4qbQqKeexjAD0VKgAGVgLEWOCoJDCBhRPJnJ5QuFItEoHEEkkoJQ0ABrCBsjnwLLwArPLE4gA0UF0Csx2PgqpYGqmSu1UDQAH49Qbyqz2aJjGLJdLRM00F9VXhVs78IpQaNbVKrbLWO68DRA4dDngXRAw96Jb6Zc1xOJw-gKhUk66AFadbhQGlQBDwUQAQiAA
+
+export default ({ children }) => (
+  <BlogPost title={meta.title}>
+    {children}
+  </BlogPost>
+);

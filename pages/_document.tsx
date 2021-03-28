@@ -16,9 +16,11 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body className="dark:bg-gray-900">
-          <Main />
-          <NextScript />
+        <body className="dark:bg-gray-900 bg-white">
+          <main className="px-8 md:m-auto md:max-w-screen-sm">
+            <Main />
+            <NextScript />
+          </main>
         </body>
       </Html>
     );
