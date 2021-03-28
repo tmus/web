@@ -5,6 +5,9 @@ import { Item } from "@components/Item";
 import { Section } from "@components/Section";
 import { projects } from "@data/projects";
 import { Layout } from "@components/Layout";
+import getAllPosts from "utils/posts";
+
+const posts = getAllPosts();
 
 export default function Home() {
   return (
@@ -33,6 +36,14 @@ export default function Home() {
               {project.body}
             </Item>
           );
+        })}
+      </Section>
+
+      <Divider />
+
+      <Section title="Posts">
+        {posts.map(({ link, module: { default: Component, meta } }) => {
+          return <Item key={link} title={meta.title} href={link} />;
         })}
       </Section>
     </Layout>
