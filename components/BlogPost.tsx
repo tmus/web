@@ -10,7 +10,9 @@ type BlogPostProps = {
 export function BlogPost({ title, description, children }: BlogPostProps) {
   return (
     <Layout title={title} description={description}>
-      <article className="prose py-16 text-gray-700">{children}</article>
+      <article className="prose dark:prose-dark py-16 text-gray-700 dark:text-white">
+        {children}
+      </article>
     </Layout>
   );
 }

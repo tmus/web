@@ -1,4 +1,5 @@
 import { BlogPost } from "@components/BlogPost.tsx";
+import { WarningCallout } from "@components/posts/WarningCallout.tsx";
 
 export const meta = {
   title: "Template Literal Types in TypeScript 4.1",
@@ -59,7 +60,9 @@ Here, we define all the possible hex characters, and then define a `HexPair` by 
 
 Pretty neat!
 
-_**Note**: There's an upper limit on the size of a union type generated this way. For example, I tried joining my `HexPair` type three times to create a `RGBColor` type, but got a `Expression produces a union type that is too complex to represent.` error._
+<WarningCallout title="Watch out for upper limits!">
+Union types generated this way have an upper limit on the amount of items they can contain. For example, I tried joining my HexPair type three times to create a RGBColor type, but got a “Expression produces a union type that is too complex to represent” error.
+</WarningCallout>
 
 The code in this post is available in [this TypeScript Playground].
 
