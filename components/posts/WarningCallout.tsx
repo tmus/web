@@ -8,7 +8,7 @@ type WarningCalloutProps = {
 
 export function WarningCallout({ title, children }: WarningCalloutProps) {
   return (
-    <Callout title={title} background={["bg-yellow-100", "bg-yellow-900"]}>
+    <Callout title={title} background={["bg-yellow-100", "dark:bg-yellow-900"]}>
       {children}
     </Callout>
   );

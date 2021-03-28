@@ -9,8 +9,8 @@ type CalloutProps = {
 export function Callout({ title, children, background }: CalloutProps) {
   return (
     <aside
-      className={`${background?.[0] || "bg-gray-100"} dark:${
-        background?.[1] || "bg-gray-800"
+      className={`${background?.[0] || "bg-gray-100"} ${
+        background?.[1] || "dark:bg-gray-800"
       } rounded-xl p-8`}
     >
       <div className="uppercase text-sm tracking-widest pb-4 text-gray-500 dark:text-gray-300 font-semibold">
