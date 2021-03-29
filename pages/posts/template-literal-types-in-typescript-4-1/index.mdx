@@ -1,9 +1,12 @@
 import { BlogPost } from "@components/BlogPost.tsx";
 import { WarningCallout } from "@components/posts/WarningCallout.tsx";
+import { PlaygroundLink } from "@components/posts/PlaygroundLink.tsx";
 
 export const meta = {
   title: "Template Literal Types in TypeScript 4.1",
   description: `A new feature in TypeScript 4.1 is the ability to create Template Literal Types. This feature allows you to use string interpolation to create types.`,
+  playgroundLink:
+    "https://www.typescriptlang.org/play?#code/C4TwDgpgBAahBOwCWBjAhgGygXigImAHsw8oAffAWyQBMaMJSK8AjQ4IyvAbgChRIUABKF4SAF6EAdsEw58DAGbAm+FBBkJVeMQHMAFir79w0AAqEAzkmTT5AAwAkAbziJUmAL4BaFyLGSMl72xjQQKBho8NCKAK5SKLZSUJYQwBbWSQAUYFYAXFAZNkjSAJQFAG6EtMap6VbF0lkExN56hnilfHVF2azsnN5KKl28JoJCEAAeAHKxlPIADORQAIwrAEwrAMwrACwrAKwrAGwrAOwrABwrAJx8AtCTUwAyafJ4aNos2ijaNNpGCs8IoeOMntMAML6KLyZ5zBYUZ5vYDGR7CaZmNBIeAOPxQmHwTz4qbQqKeexjAD0VKgAGVgLEWOCoJDCBhRPJnJ5QuFItEoHEEkkoJQ0ABrCBsjnwLLwArPLE4gA0UF0Csx2PgqpYGqmSu1UDQAH49Qbyqz2aJjGLJdLRM00F9VXhVs78IpQaNbVKrbLWO68DRA4dDngXRAw96Jb6Zc1xOJw-gKhUk66AFadbhQGlQBDwUQAQiAA",
 };
 
 A new feature in TypeScript 4.1 is the ability to create **Template Literal Types**. This feature allows you to use string interpolation to create types:
@@ -60,16 +63,12 @@ Here, we define all the possible hex characters, and then define a `HexPair` by 
 
 Pretty neat!
 
-<WarningCallout title="Watch out for upper limits!">
-Union types generated this way have an upper limit on the amount of items they can contain. For example, I tried joining my HexPair type three times to create a RGBColor type, but got a “Expression produces a union type that is too complex to represent” error.
-</WarningCallout>
-
-The code in this post is available in [this TypeScript Playground].
-
-[this typescript playground]: https://www.typescriptlang.org/play?#code/C4TwDgpgBAahBOwCWBjAhgGygXigImAHsw8oAffAWyQBMaMJSK8AjQ4IyvAbgChRIUABKF4SAF6EAdsEw58DAGbAm+FBBkJVeMQHMAFir79w0AAqEAzkmTT5AAwAkAbziJUmAL4BaFyLGSMl72xjQQKBho8NCKAK5SKLZSUJYQwBbWSQAUYFYAXFAZNkjSAJQFAG6EtMap6VbF0lkExN56hnilfHVF2azsnN5KKl28JoJCEAAeAHKxlPIADORQAIwrAEwrAMwrACwrAKwrAGwrAOwrABwrAJx8AtCTUwAyafJ4aNos2ijaNNpGCs8IoeOMntMAML6KLyZ5zBYUZ5vYDGR7CaZmNBIeAOPxQmHwTz4qbQqKeexjAD0VKgAGVgLEWOCoJDCBhRPJnJ5QuFItEoHEEkkoJQ0ABrCBsjnwLLwArPLE4gA0UF0Csx2PgqpYGqmSu1UDQAH49Qbyqz2aJjGLJdLRM00F9VXhVs78IpQaNbVKrbLWO68DRA4dDngXRAw96Jb6Zc1xOJw-gKhUk66AFadbhQGlQBDwUQAQiAA
+<PlaygroundLink
+  icon="typescript"
+  link={new URL(meta.playgroundLink)}
+  callout="The code in this post is available in this TypeScript Playground."
+/>
 
 export default ({ children }) => (
-  <BlogPost title={meta.title}>
-    {children}
-  </BlogPost>
+  <BlogPost title={meta.title}>{children}</BlogPost>
 );
