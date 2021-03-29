@@ -1,0 +1,56 @@
+import { BlogPost } from "@components/BlogPost.tsx";
+import { WarningCallout } from "@components/posts/WarningCallout.tsx";
+import { PlaygroundLink } from "@components/posts/PlaygroundLink.tsx";
+
+export const meta = {
+  title: "What's New in TypeScript 4.3",
+  description: ``,
+  playgroundLink:
+    "https://www.typescriptlang.org/play?ssl=1&ssc=1&pln=14&pc=2#code/C4TwDgpgBAggrsAFgUQE6oPaqgXigbwF8BuAKFIBMIBjAGwENVoAzOAO2uAEsM2pn6XWgAoAlAC4oANwxcKZKnUYt2nHny4BneEjSZUwiJPYBrNhgDubCVGhbYCFOixlSwVCAKko-QSNFkhFDU9MDUiIaiXj5czFDCWjpO+pFR+N4+UAD0WVAAIhhQ9I5QTABWNNy8UJrAcMzMGUEQtJrQ6ZnBvJoYtBAAdLQYAObChkWaRWwgov0AthCamvTDEAFNpIRAA",
+};
+
+TypeScript 4.3 has been released! Here's a lowdown of the new fixes and features
+that you can start to use in your latest TypeScript projects.
+
+### `catch` variables default to `unknown`
+
+Maybe you didn't know this already, but, pre 4.3, the `Error` that is caught in a
+try catch block had a type of `any`:
+
+```typescript
+try {
+  fail();
+} catch(e) {
+  e.can.do.anything.because.this.is.an.any.type;
+}
+```
+
+From 4.3 onwards, the catch variable's type will be `unknown`, meaning that you'll
+need to to inspect it and cast it to the expected type (or bury your head in the
+sand and cast it to `any` again):
+
+```typescript
+try {
+  fail();
+} catch(e) {
+  if (isAuthError(e)) {
+    // Do auth rejection stuff
+  } else {
+    console.log((e as any).message);
+  }
+}
+```
+
+For me, a welcome change.
+
+### Other Stuffs
+
+<PlaygroundLink
+  icon="typescript"
+  link={new URL(meta.playgroundLink)}
+  callout="The code in this post is available in this TypeScript Playground."
+/>
+
+export default ({ children }) => (
+  <BlogPost title={meta.title}>{children}</BlogPost>
+);
