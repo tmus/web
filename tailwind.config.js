@@ -10,6 +10,17 @@ module.exports = {
       // TODO: Copypasta job - have a look through here
       typography(theme) {
         return {
+          DEFAULT: {
+            css: {
+              'code::before': {
+                content: '""',
+              },
+              'code::after': {
+                content: '""',
+              }
+              // ...
+            },
+          },
           dark: {
             css: {
               color: theme("colors.gray.300"),

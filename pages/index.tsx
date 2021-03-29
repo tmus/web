@@ -6,12 +6,13 @@ import { Section } from "@components/Section";
 import { projects } from "@data/projects";
 import { Layout } from "@components/Layout";
 import getAllPosts from "utils/posts";
+import { config } from "config";
 
 const posts = getAllPosts();
 
 export default function Home() {
   return (
-    <Layout title="Thomas Smith" description="Software Engineer" socials>
+    <Layout title={config.siteTitle} description="Software Engineer" socials>
       <Section title="Current Position">
         {jobs.map((job) => {
           return (
